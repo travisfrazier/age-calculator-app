@@ -39,5 +39,8 @@ p {
     strong {
         color: #854DFF;
     }
+    @media only screen and (max-width: 800px) {
+        font-size: 60px;
+    }
 }
 </style>

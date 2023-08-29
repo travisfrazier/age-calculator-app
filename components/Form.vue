@@ -140,6 +140,10 @@ export default {
 	.form-wrapper-element {
 		display: flex;
 		gap: 32px;
+		@media only screen and (max-width: 800px) {
+        	gap: 22px;
+			margin-bottom: 10px;
+    	}
 	}
 }
 
@@ -150,6 +154,13 @@ input {
 	border-radius: 10px;
 	border: 1px solid #ccc;
 	font-weight: bold;
+	@media only screen and (max-width: 800px) {
+        font-size: 20px;
+		width: 80px;
+    }
+	@media only screen and (max-width: 800px) {
+    	width: 100%;
+    }
 }
 
 /* Chrome, Safari, Edge, Opera */
