@@ -2,9 +2,9 @@
     <div class="form-container">
         <Form @passData="updateData" />
         <div class="content">
-            <p><strong>{{ this.age.years }}</strong>years</p>
-            <p><strong>{{this.age.months}}</strong>months</p>
-            <p><strong>{{this.age.days}}</strong>days</p>
+            <p><strong>{{ age.years }}</strong>years</p>
+            <p><strong>{{ age.months }}</strong>months</p>
+            <p><strong>{{ age.days }}</strong>days</p>
         </div>
     </div>
 </template>
