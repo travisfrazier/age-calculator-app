@@ -23,7 +23,7 @@
         },
         methods: {
             updateData(data) {
-                this.age = {}
+                //this.age = {}
                 this.age = data;
             }
         }
