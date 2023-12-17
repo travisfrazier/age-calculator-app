@@ -1,5 +1,4 @@
 <template>
-	<div class="form-container">
 		<FormKit class="form" type="form" name="main-form">
 			<div class="form-wrapper-element">
 				<FormKit
@@ -64,21 +63,6 @@
 				</FormKit>
 			</div>
 		</FormKit>
-		<div class="content">
-			<p>
-				<strong>{{ age.years }}</strong
-				>years
-			</p>
-			<p>
-				<strong>{{ age.months }}</strong
-				>months
-			</p>
-			<p>
-				<strong>{{ age.days }}</strong
-				>days
-			</p>
-		</div>
-	</div>
 </template>
 
 <script lang="js">
@@ -91,50 +75,52 @@ export default {
 			month: null,
 			year: null,
 			age: {
-                years: "--",
-                months: "--",
-                days: "--"
+                years: null,
+                months: null,
+                days: null
             }
 		}
 	},
 	methods: {
 		calculateAge(e) {
+                                    
 			e.preventDefault();
-			const buildDate = `${this.year} - ${this.month} - ${this.day}`;
+			const buildDate = `${parseInt(this.year)},${parseInt(this.month)},${parseInt(this.day)}`;
 			const dob = new Date(buildDate);
 
-			const dobYear = dob.getYear();
+
+			const dobYear = dob.getFullYear();
     		const dobMonth = dob.getMonth();
     		const dobDate = dob.getDate();
 
 			//get the current date from the system
 			const now = new Date();
     		//extract the year, month, and date from current date
-    		const currentYear = now.getYear();
+    		const currentYear = now.getFullYear();
     		const currentMonth = now.getMonth();
    			const currentDate = now.getDate();
-
-    		const ageString = "";
 
 			//get years
 			var yearAge = currentYear - dobYear;
 
 			//get months
-			if (currentMonth >= dobMonth)
+			if (currentMonth >= dobMonth) {
+				var monthAge = currentMonth - dobMonth;
+			}
       		//get months when current month is greater
-      		var monthAge = currentMonth - dobMonth;
 			else {
 				yearAge--;
 				var monthAge = 12 + currentMonth - dobMonth;
 			}
 
 			//get days
-			if (currentDate >= dobDate)
+			if (currentDate >= dobDate) {
+				var dayAge = currentDate - dobDate;
+			}
 			//get days when the current date is greater
-			var dateAge = currentDate - dobDate;
 			else {
 			monthAge--;
-			var dateAge = 31 + currentDate - dobDate;
+			var dayAge = 31 + currentDate - dobDate;
 
 			if (monthAge < 0) {
 				monthAge = 11;
@@ -145,10 +131,11 @@ export default {
 			this.age = {
 				years: yearAge,
 				months: monthAge,
-				days: dateAge
+				days: dayAge
 			};
 
-			//this.$emit('passData', this.age);
+
+			this.$emit('passData', this.age);
 			this.disabled = false;
 		}
 	}
@@ -235,18 +222,5 @@ input:focus {
 	padding: 0;
 	max-width: 160px;
 	color: red;
-}
-
-p {
-    font-size: 98px;
-    font-weight: bold;
-    margin: 0;
-    line-height: 1.1;
-    strong {
-        color: #854DFF;
-    }
-    @media only screen and (max-width: 800px) {
-        font-size: 60px;
-    }
 }
 </style>
