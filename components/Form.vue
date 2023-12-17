@@ -1,68 +1,84 @@
 <template>
-	<FormKit class="form" type="form" name="main-form">
-		<div class="form-wrapper-element">
-			<FormKit
-				type="number"
-				label="Day"
-				name="day"
-				step="1"
-				placeholder="DD"
-				validation="required|between:1,31"
-				validation-visibility="blur"
-				v-model="day"
-			/>
-			<FormKit
-				type="number"
-				label="Month"
-				name="month"
-				step="2"
-				placeholder="MM"
-				validation="required|between:1,12"
-				validation-visibility="blur"
-				v-model="month"
-			/>
-			<FormKit
-				type="number"
-				label="Year"
-				name="year"
-				step="3"
-				placeholder="YYYY"
-				validation="required|between:1900,2023"
-				validation-visibility="blur"
-				v-model="year"
-			/>
-		</div>
-		<div class="form-action-container">
-			<div class="line"></div>
-			<FormKit
-				class="button"
-				type="submit"
-				for="main-form"
-				@click="calculateAge"
-				:disabled="day === null || month === null || year === null"
-			>
-				<svg
-					width="46"
-					height="44"
-					viewBox="0 0 46 44"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
+	<div class="form-container">
+		<FormKit class="form" type="form" name="main-form">
+			<div class="form-wrapper-element">
+				<FormKit
+					type="number"
+					label="Day"
+					name="day"
+					step="1"
+					placeholder="DD"
+					validation="required|between:1,31"
+					validation-visibility="blur"
+					v-model="day"
+				/>
+				<FormKit
+					type="number"
+					label="Month"
+					name="month"
+					step="2"
+					placeholder="MM"
+					validation="required|between:1,12"
+					validation-visibility="blur"
+					v-model="month"
+				/>
+				<FormKit
+					type="number"
+					label="Year"
+					name="year"
+					step="3"
+					placeholder="YYYY"
+					validation="required|between:1900,2023"
+					validation-visibility="blur"
+					v-model="year"
+				/>
+			</div>
+			<div class="form-action-container">
+				<div class="line"></div>
+				<FormKit
+					class="button"
+					type="submit"
+					for="main-form"
+					@click="calculateAge"
+					:disabled="day === null || month === null || year === null"
 				>
-					<path
-						d="M1 22.0189C8.33333 21.6859 23 25.6158 23 44"
-						stroke="white"
-						stroke-width="2"
-					/>
-					<path d="M23 44V0" stroke="white" stroke-width="2" />
-					<path
-						d="M45 22.0189C37.6667 21.6859 23 25.6158 23 44"
-						stroke="white"
-						stroke-width="2"
-					/>
-				</svg>
-			</FormKit>
+					<svg
+						width="46"
+						height="44"
+						viewBox="0 0 46 44"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M1 22.0189C8.33333 21.6859 23 25.6158 23 44"
+							stroke="white"
+							stroke-width="2"
+						/>
+						<path d="M23 44V0" stroke="white" stroke-width="2" />
+						<path
+							d="M45 22.0189C37.6667 21.6859 23 25.6158 23 44"
+							stroke="white"
+							stroke-width="2"
+						/>
+					</svg>
+				</FormKit>
+			</div>
+		</FormKit>
+		<div class="content">
+			<p>
+				<strong>{{ age.years }}</strong
+				>years
+			</p>
+			<p>
+				<strong>{{ age.months }}</strong
+				>months
+			</p>
+			<p>
+				<strong>{{ age.days }}</strong
+				>days
+			</p>
 		</div>
-	</FormKit>
+	</div>
 </template>
 
 <script lang="js">
@@ -74,7 +90,11 @@ export default {
 			day: null,
 			month: null,
 			year: null,
-			age: {}
+			age: {
+                years: "--",
+                months: "--",
+                days: "--"
+            }
 		}
 	},
 	methods: {
@@ -128,7 +148,7 @@ export default {
 				days: dateAge
 			};
 
-			this.$emit('passData', this.age);
+			//this.$emit('passData', this.age);
 			this.disabled = false;
 		}
 	}
@@ -141,9 +161,9 @@ export default {
 		display: flex;
 		gap: 32px;
 		@media only screen and (max-width: 800px) {
-        	gap: 22px;
+			gap: 22px;
 			margin-bottom: 10px;
-    	}
+		}
 	}
 }
 
@@ -155,12 +175,12 @@ input {
 	border: 1px solid #ccc;
 	font-weight: bold;
 	@media only screen and (max-width: 800px) {
-        font-size: 20px;
+		font-size: 20px;
 		width: 80px;
-    }
+	}
 	@media only screen and (max-width: 800px) {
-    	width: 100%;
-    }
+		width: 100%;
+	}
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -215,5 +235,18 @@ input:focus {
 	padding: 0;
 	max-width: 160px;
 	color: red;
+}
+
+p {
+    font-size: 98px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.1;
+    strong {
+        color: #854DFF;
+    }
+    @media only screen and (max-width: 800px) {
+        font-size: 60px;
+    }
 }
 </style>

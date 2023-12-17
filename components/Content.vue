@@ -22,16 +22,9 @@
             }
         },
         methods: {
-           async updateData(data) {
-               await this.clearAge(data)
-              // this.age = data;
-            },
-            async clearAge(data) {
-                this.age = {};
-                await this.setAge(data);
-            },
-            setAge(data) {
-                this.age = data;
+           updateData(data) {
+               this.age = {};
+              this.age = data;
             }
         }
     }
